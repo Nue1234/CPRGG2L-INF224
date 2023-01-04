@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.Scanner;
+
+public class App {
+  public static void main(String[] args) throws IOException {
+    // This is to ask the user for the file name.
+    Scanner scan = new Scanner(System.in);
+    System.out.print("Enter the file name: ");
+    String fileName = scan.nextLine();
+
+    // Declared variable for word counting.
+    int wordCount = 0;
+
+    try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+      // This is to read each lines in the file.
+      String line;
+      while ((line = br.readLine()) != null) {
+        // This is to split the line by words.
+        String[] words = line.split("\\s+");
+        // Counting the words by line and adding it.
+        wordCount += words.length;
+      }
+    } 
+    catch (IOException e) {}
+
+    // Print the count of the words in the file.
+    System.out.println("Number of words: " + wordCount);
+    {
+        scan.close();
+    }
+  }
+}
