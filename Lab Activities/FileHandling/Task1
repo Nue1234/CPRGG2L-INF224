@@ -1,0 +1,33 @@
+import java.io.*;
+
+public class App {
+  public static void main(String[] args) throws IOException {
+
+    // Variable used for storing count.
+    int result = 0;
+    
+    // This is for reading the data file.
+    BufferedReader reader = new BufferedReader(new FileReader("data.txt"));    
+    String line = reader.readLine();
+    while (line != null) {
+
+      // This is to separate the numbers in the file line by line.
+      String[] values = line.split(",");
+
+      // This is for adding the value of number in the file.
+      for (String value : values) {
+        result += Integer.parseInt(value);
+      }
+      line = reader.readLine();
+    }
+    reader.close();
+
+    
+    // This is for writing the added number in the new file "sum.txt"
+    BufferedWriter writer = new BufferedWriter(new FileWriter("sum.txt"));
+    writer.write(String.valueOf(result));
+
+    
+    writer.close();
+  }
+}
