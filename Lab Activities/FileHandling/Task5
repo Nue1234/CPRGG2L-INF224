@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+public class App {
+  public static void main(String[] args) throws IOException {
+    // This is to ask the user to enter the input and output file names.
+    Scanner scan = new Scanner(System.in);
+    System.out.print("Input file name: ");
+    String inputFileName = scan.nextLine();
+    System.out.print("Output file name: ");
+    String outputFileName = scan.nextLine();
+    scan.close();
+
+    // This is to read the contents of the input file.
+    File inputFile = new File(inputFileName);
+    Scanner scan2 = new Scanner(inputFile);
+    List<String> lines = new ArrayList<>();
+    while (scan2.hasNextLine()) {
+      lines.add(scan2.nextLine());
+    }
+    scan2.close();
+
+    //  This is to reverse the the order of the lines.
+    Collections.reverse(lines);
+
+    // This is to write the reversed order of the lines to the output file
+    FileWriter outputFile = new FileWriter(outputFileName);
+    PrintWriter output = new PrintWriter(outputFile);
+    for (String line : lines) {
+      // This is to reverse the order of words by lines.
+      String[] words = line.split("\\s+");
+      for (int i = words.length - 1; i >= 0; i--) {
+        output.print(words[i] + " ");
+      }
+      output.println();
+    }
+    output.close();
+  }
+}
