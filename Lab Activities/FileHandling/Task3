@@ -1,0 +1,28 @@
+import java.io.*;
+
+public class App {
+  public static void main(String[] args) throws IOException {
+    // This is for reading the file.
+    BufferedReader reader = new BufferedReader(new FileReader("dummy.txt"));
+
+    // Variable for counting the vowels.
+    int vowelCount = 0;
+
+    // This is the condition to read only the first 5 lines in the file.
+    for (int i = 0; i < 5; i++) {
+      String line = reader.readLine();
+
+      // This is to check every character in the file.
+      for (char c : line.toCharArray()) {
+        // A condition to count only the vowels and add it.
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+          vowelCount++;
+        }
+      }
+    }
+    reader.close();
+
+    // Print the vowel count
+    System.out.println("Vowel count: " + vowelCount);
+  }
+}
